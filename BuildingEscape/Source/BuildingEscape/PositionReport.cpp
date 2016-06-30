@@ -12,6 +12,7 @@ UPositionReport::UPositionReport()
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
+   
 	// ...
 }
 
@@ -20,6 +21,12 @@ UPositionReport::UPositionReport()
 void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
+   
+    //*This dereference the address and gets the value
+    //This store the object name in objectName
+    //we use -> when we are dealing with a pointer
+     FString ObjectName = GetOwner()->GetName();
+    UE_LOG(LogTemp, Warning, TEXT("Position report for %s"), *ObjectName);
 
 	// ...
 	
