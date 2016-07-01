@@ -25,8 +25,10 @@ void UPositionReport::BeginPlay()
     //*This dereference the address and gets the value
     //This store the object name in objectName
     //we use -> when we are dealing with a pointer
-     FString ObjectName = GetOwner()->GetName();
-    UE_LOG(LogTemp, Warning, TEXT("Position report for %s"), *ObjectName);
+    FString ObjectName = GetOwner()->GetName();
+    //This gets the position of the objects
+    FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
+    UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *ObjectName, *ObjectPos);
 
 	// ...
 	
