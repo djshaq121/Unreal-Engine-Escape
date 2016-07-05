@@ -40,21 +40,36 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
     OUT PlayerViewPointRotation
      );
     
-    //Log out to test
-    /*UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"),
-           *PlayerViewPointLocation.ToString(),
-           *PlayerViewPointRotation.ToString()
-        );*/
-    //
-    
     
     FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
     
     //Draw a red line in the world to visualise
     DrawDebugLine(GetWorld(), PlayerViewPointLocation, LineTraceEnd, FColor(255,0,0),false,0.f,0.f,10.f);
   
-    //Ray-Cast out to reach distance
     
+    //Setup query parameters
+    //We have false because we dont want visbility collision rather have player collision, and we have getowner to ignore our self so we can see
+    //the object in front of us and not our self
+    FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+    
+    //We are sorting by object type
+    //Line trace (AKA Ray-Cast) out to reach distance
+    FHitResult Hit;
+    GetWorld()->LineTraceSingleByObjectType(
+                                            OUT Hit,
+                                            PlayerViewPointLocation,
+                                            LineTraceEnd,
+                                            FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+                                            TraceParameters
+                                            );
     //see what we hit
+    AActor *ActorHit = Hit.GetActor();
+    if(ActorHit)
+    {
+        //This gets the name of the object we look at if it simulates physics
+        UE_LOG(LogTemp, Warning, TEXT("Line Trace Hit: %s"), *(ActorHit->GetName()));
+
+    }
+    
 }
 
