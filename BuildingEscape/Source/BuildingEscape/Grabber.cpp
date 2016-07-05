@@ -45,10 +45,14 @@ void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompon
            *PlayerViewPointLocation.ToString(),
            *PlayerViewPointRotation.ToString()
         );*/
-    //T
+    //
+    
+    
     FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
     
+    //Draw a red line in the world to visualise
     DrawDebugLine(GetWorld(), PlayerViewPointLocation, LineTraceEnd, FColor(255,0,0),false,0.f,0.f,10.f);
+  
     //Ray-Cast out to reach distance
     
     //see what we hit
