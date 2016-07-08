@@ -34,4 +34,15 @@ private:
     
     //Raycast and grabs whats in reach
     void Grab();
+    
+    //Called when grab is released
+    void Release();
+    
+    void FindPhysicsHandleComponent();
+    
+    //setUp(assumed)attached input component
+    void SetupInputComponent();
+    
+    //Return hit for the first physics body in reach
+    const FHitResult GetFirstPhysicsBodyInReach();
 };
