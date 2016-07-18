@@ -30,8 +30,8 @@ private:
     float OpenAngle = -90.0f;
     
     //A trigger volume, is a invisvible volume in the game world that can be used to tell code to do something 
-    UPROPERTY(EditAnywhere)
-    ATriggerVolume  *PressurePlate;
+	UPROPERTY(EditAnywhere)
+		ATriggerVolume  *PressurePlate = nullptr;
     
     //This is a time delay.
     UPROPERTY(EditAnywhere)
@@ -39,9 +39,9 @@ private:
     
     float LastDoorOpenTime;
    
-   
-    AActor* Owner;
-    
+   //Pointers need to point nullptr
+    AActor* Owner = nullptr;
+
     //Returns total mass in kg
     float GetTotalMassOfActorOnPlate();
 };

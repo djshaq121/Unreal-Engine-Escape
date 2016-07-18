@@ -27,8 +27,6 @@ private:
 
     //
     UPhysicsHandleComponent *PhysicsHandle = nullptr;
-    
-    
     //
     UInputComponent *Input = nullptr;
     
